@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
+    <title>Kvizovi</title>
+</head>
+<body>
+    <div class="header">
+        <h1>KVIZ</h1>
+        <p>
+            Dobrodosli u kviz.<br>Kviz se sastoji od mnogo 
+            razlicith kategorija i tezina. <br> Izaberite kategoriju, 
+            tezinu i tip pitanja.
+        </p>
+    </div>
+
+
+    <div class="dropdown">
+        <button class="dropbtn">Kategorija</button>
+        <div class="dropdown-content">
+            <ul>
+                <li>
+                    <input type="radio"  id="zivotinje" name="radAnswer">
+                    <label for="zivotinje">Zivotinje</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio"  id="slave"  name="radAnswer">
+                    <label for="slave">Slavne osobe</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio"   id="umjetnos" name="radAnswer">
+                    <label for="umjetnos">Umjetnost</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio"  id="pol" name="radAnswer">
+                    <label for="pol">Politika</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio"  id="pov" name="radAnswer">
+                    <label for="pov">Povijest</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio"  id="geo" name="radAnswer">
+                    <label for="geo">Geografija</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio"  id="sport" name="radAnswer">
+                    <label for="sport">Sport</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio"  id="mit" name="radAnswer">
+                    <label for="mit">Mitologija</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio"  id="nema" name="radAnswer">
+                    <label for="nema">Nema kategorije</label>
+                    </input>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Tezina</button>
+        <div class="dropdown-content">
+            <ul>
+                <li>
+                    <input type="radio"  id="lagano"  name="radAnswer1">
+                    <label for="lagano">Lagano</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio" id="srednje"  name="radAnswer1">
+                    <label for="srednje">Srednje</label>
+                    </input>
+                </li>
+                <li>
+                    <input type="radio"  id="tesko"  name="radAnswer1">
+                    <label for="tesko">Tesko</label>
+                    </input>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="dropdown">
+        <button class="dropbtn">Tip</button>
+        <div class="dropdown-content">
+          <ul>
+            <li>
+                <input type="radio" id="tocno"   name="radAnswer2">
+                <label for="tocno">Tocno/Netocno</label>
+                </input>
+            </li>
+            <li>
+                <input type="radio" id="multiple"  name="radAnswer2">
+                <label for="multiple">Multiple question</label>
+                </input>
+            </li>
+          </ul>
+        </div>
+    </div>
+    
+</body>
+</html>
