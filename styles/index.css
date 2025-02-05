@@ -96,3 +96,23 @@ input[type="radio"]:focus + label::before {
   border-color: currentColor;
 }
 
+.start{
+  display: flex;
+  justify-content: center;
+}
+
+.start button{
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius:20px ;
+  margin: 10px;
+}
+.startText{
+  margin-top: 100px;
+  text-align: center;
+  margin: 10px;
+}
+

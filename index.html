@@ -22,48 +22,48 @@
         <div class="dropdown-content">
             <ul>
                 <li>
-                    <input type="radio"  id="zivotinje" name="radAnswer">
-                    <label for="zivotinje">Zivotinje</label>
+                    <input type="radio"  id="animal" name="radAnswer" value="Zivotinje">
+                    <label for="animal">Zivotinje</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio"  id="slave"  name="radAnswer">
-                    <label for="slave">Slavne osobe</label>
+                    <input type="radio"  id="celeb"  name="radAnswer" value="Slavne osobe">
+                    <label for="celeb">Slavne osobe</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio"   id="umjetnos" name="radAnswer">
-                    <label for="umjetnos">Umjetnost</label>
+                    <input type="radio"   id="art" name="radAnswer" value="Umjetnost">
+                    <label for="art">Umjetnost</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio"  id="pol" name="radAnswer">
+                    <input type="radio"  id="pol" name="radAnswer" value="Politika">
                     <label for="pol">Politika</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio"  id="pov" name="radAnswer">
-                    <label for="pov">Povijest</label>
+                    <input type="radio"  id="his" name="radAnswer" value="Povijest">
+                    <label for="his">Povijest</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio"  id="geo" name="radAnswer">
+                    <input type="radio"  id="geo" name="radAnswer" value="Geografija">
                     <label for="geo">Geografija</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio"  id="sport" name="radAnswer">
+                    <input type="radio"  id="sport" name="radAnswer" value="Sport">
                     <label for="sport">Sport</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio"  id="mit" name="radAnswer">
+                    <input type="radio"  id="mit" name="radAnswer" value="Mitologija">
                     <label for="mit">Mitologija</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio"  id="nema" name="radAnswer">
-                    <label for="nema">Nema kategorije</label>
+                    <input type="radio"  id="nth" name="radAnswer" value="Nema kategorije">
+                    <label for="nth">Nema kategorije</label>
                     </input>
                 </li>
 
@@ -76,18 +76,18 @@
         <div class="dropdown-content">
             <ul>
                 <li>
-                    <input type="radio"  id="lagano"  name="radAnswer1">
-                    <label for="lagano">Lagano</label>
+                    <input type="radio"  id="easy"  name="radAnswer1" value="Lagano">
+                    <label for="easy">Lagano</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio" id="srednje"  name="radAnswer1">
-                    <label for="srednje">Srednje</label>
+                    <input type="radio" id="mid"  name="radAnswer1" value="Srednje">
+                    <label for="mid">Srednje</label>
                     </input>
                 </li>
                 <li>
-                    <input type="radio"  id="tesko"  name="radAnswer1">
-                    <label for="tesko">Tesko</label>
+                    <input type="radio"  id="hard"  name="radAnswer1" value="Tesko">
+                    <label for="hard">Tesko</label>
                     </input>
                 </li>
             </ul>
@@ -99,18 +99,35 @@
         <div class="dropdown-content">
           <ul>
             <li>
-                <input type="radio" id="tocno"   name="radAnswer2">
-                <label for="tocno">Tocno/Netocno</label>
+                <input type="radio" id="tf"   name="radAnswer2" value="Tocno/Netocno">
+                <label for="tf">Tocno/Netocno</label>
                 </input>
             </li>
             <li>
-                <input type="radio" id="multiple"  name="radAnswer2">
+                <input type="radio" id="multiple"  name="radAnswer2" value="Multiple question">
                 <label for="multiple">Multiple question</label>
                 </input>
             </li>
           </ul>
         </div>
     </div>
-    
+
+    <div class="startText"> 
+        <p>Kada ste spremni za zapoceti kviz kliknite botun: Start</p>
+        <p>Trenutno odabrane postavke:</p>
+        <p id="textCat"></p>
+        <p id="textDiff"></p>
+        <p id="textType"></p>
+    </div>
+
+
+    <div class="start">
+        <button id="start">Start</button>
+    </div>
 </body>
+
+<script src="scripts/modules/api.js" type="modules" ></script>
+<script src="scripts/modules/index.js" type="modules"></script>
+<script src="scripts/script.js"></script>
+
 </html>
