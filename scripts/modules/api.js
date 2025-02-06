@@ -1,6 +1,7 @@
 import {disableRadioButtons,selectedCategory, selectedDiff, selectedType} from "./script.js";
+import{createQuizList} from "./index.js";
 
-let fetchQuizData =()=>{
+async function fetchQuizData(){
     if(selectedCategory === null || selectedDiff === null || selectedType === null){
         alert("Morate odabrati sve opcije kako bi ste mogli dobiti pitanja!");
         return;
@@ -9,9 +10,24 @@ let fetchQuizData =()=>{
     let category = fetchCategory();
     let difficulty = fetchDifficulty();
     let type = fetchType();
-    let url = `https://opentdb.com/api.php?amount=5${category}${difficulty}${type}`;
-    fetch(url).then(response => response.json()).then(data =>(console.log(data)));
-    
+    try{
+
+        const res=await fetch(`https://opentdb.com/api.php?amount=5${category}${difficulty}${type}`);
+        if(!res.ok){
+            throw new Error('HTTP error');
+        }
+        const data=await res.json();
+        console.log(data);
+        data.results.forEach(item => {
+            console.log(item.question);
+        });
+        const ul=createQuizList(data.results);
+        document.body.appendChild(ul);
+
+    }catch(error){
+        console.log(error);
+        return;
+    }  
  }
 
  let fetchCategory = () => {
@@ -50,7 +66,7 @@ let fetchQuizData =()=>{
     }
     else if(selectedCategory==='nth')
     {
-        return null;
+        return '';
     }
  }
  let fetchDifficulty = () => {
@@ -58,7 +74,7 @@ let fetchQuizData =()=>{
     {
         return '&difficulty=easy';
     }
-    else if(selectedDiff==='medium')
+    else if(selectedDiff==='mid')
     {
         return '&difficulty=medium';
     }
@@ -72,11 +88,13 @@ let fetchQuizData =()=>{
     {
         return '&type=multiple';
     }
-    else if(selectedType==='boolean')
+    else if(selectedType==='tf')
     {
         return '&type=boolean';
     }
  }
  document.getElementById('start').addEventListener('click',fetchQuizData);
+
+
 
  export {fetchQuizData};
