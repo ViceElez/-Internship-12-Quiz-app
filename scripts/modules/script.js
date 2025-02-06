@@ -16,7 +16,7 @@ let findSelcetedRadioBtnCategory = () => {
 
 let findSelcetedRadioBtnDiff = () => {
     let selected=document.querySelector('input[name="radAnswer1"]:checked'); 
-    selectedDiff = selected ? selected : null;
+    selectedDiff = selected ? selected.id : null;
     if(selectedDiff !== null){
         textDiff.textContent=`Odabrana tezina pitanja: ${selected.value}`;
     }
@@ -24,7 +24,7 @@ let findSelcetedRadioBtnDiff = () => {
 
 let findSelcetedRadioBtnType = () => {
     let selected=document.querySelector('input[name="radAnswer2"]:checked');
-    selectedType = selected ? selected : null;
+    selectedType = selected ? selected.id : null;
     if(selectedType !== null){
         textType.textContent=`Odabrana vrsta pitanja: ${selected.value}`;
     }
@@ -39,3 +39,11 @@ radioBtnDiff.forEach(radDiff => {
 radioBtnType.forEach(radType => {
     radType.addEventListener("change",findSelcetedRadioBtnType);
 });
+
+function disableRadioButtons() {
+    radioBtnCategory.forEach(radio => radio.disabled = true);
+    radioBtnDiff.forEach(radio => radio.disabled = true);
+    radioBtnType.forEach(radio => radio.disabled = true);
+}
+
+export {disableRadioButtons,selectedCategory, selectedDiff, selectedType};
