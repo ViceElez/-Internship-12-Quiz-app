@@ -1,18 +1,20 @@
 
-function createQuizList(quizDatas){
-    console.log("Hello from index.js");
-    console.log(quizDatas);
-
-    const ul=document.createElement("ul");
-
-    quizDatas.forEach(quizData => {
-        console.log(quizData.question);
-        const li=document.createElement("li");
-        li.textContent=quizData.question;
-        ul.appendChild(li);
-    });
-
-    return ul;
+function createQuizList(question){
+    const h5=document.createElement("h5");
+    h5.textContent=question;
+    return h5;
 }
 
-export {createQuizList};
+function createCorrect(correctA){
+    const button=document.createElement("button");
+    button.textContent=correctA;
+    return button;
+}
+
+function createInCorrect(incorrectA){
+    const bt1=document.createElement("button");
+    bt1.textContent=incorrectA;
+    return bt1;
+}
+
+export {createQuizList, createCorrect, createInCorrect};

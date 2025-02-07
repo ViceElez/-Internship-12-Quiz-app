@@ -139,4 +139,10 @@ button.disabled {
   opacity: 0.4;
   pointer-events: none;
 } 
+.quiz-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
 
