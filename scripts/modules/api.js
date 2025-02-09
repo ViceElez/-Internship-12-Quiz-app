@@ -1,5 +1,5 @@
 import {disableRadioButtons,selectedCategory, selectedDiff, selectedType} from "./script.js";
-import{createCorrect, createInCorrect, createQuizList} from "./index.js";
+import{createQuizLayout} from "./index.js";
 
 async function fetchQuizData(){
     if(selectedCategory === null || selectedDiff === null || selectedType === null){
@@ -10,6 +10,8 @@ async function fetchQuizData(){
     let category = fetchCategory();
     let difficulty = fetchDifficulty();
     let type = fetchType();
+    document.getElementsByClassName('start')[0].style.display = "none";
+    
     try{
 
         const res=await fetch(`https://opentdb.com/api.php?amount=5${category}${difficulty}${type}`);
@@ -18,50 +20,9 @@ async function fetchQuizData(){
         }
 
         const data=await res.json();
-        console.log(data);
 
-        data.results.forEach(question => {
-            const div=document.createElement("div");
-
-            const questionDiv=document.createElement("div");
-            const h=createQuizList(question.question);
-            h.style.textAlign="center";
-            questionDiv.appendChild(h);
-
-            const answersDiv=document.createElement("div");
-            answersDiv.style.display = "flex";
-            answersDiv.style.justifyContent = "center";
-            answersDiv.style.flexWrap = "wrap"; 
-            answersDiv.style.gap = "10px";
-            answersDiv.style.width = "300px";
-
-            const correct=createCorrect(question.correct_answer);
-            const incorrect=createInCorrect(question.incorrect_answers[0]);
-            const incorrect1=createInCorrect(question.incorrect_answers[1]);
-            const incorrect2=createInCorrect(question.incorrect_answers[2]);
-
-            [correct, incorrect, incorrect1, incorrect2].forEach(button => {
-                button.style.width = "140px"; 
-                button.style.textAlign = "center";
-                button.style.padding = "10px"; 
-            });
-
-            answersDiv.appendChild(correct);
-            answersDiv.appendChild(incorrect);
-            answersDiv.appendChild(incorrect1);
-            answersDiv.appendChild(incorrect2);
-
-            div.style.display = "flex";
-            div.style.flexDirection = "column";
-            div.style.alignItems = "center";
-            div.style.gap = "20px"; 
-
-            div.appendChild(questionDiv);
-            div.appendChild(answersDiv);
-            document.body.appendChild(div);
-
-        });
-
+        createQuizLayout(data,selectedType);
+        
 
     }catch(error){
         console.log(error);
@@ -132,6 +93,7 @@ async function fetchQuizData(){
         return '&type=boolean';
     }
  }
+
  document.getElementById('start').addEventListener('click',fetchQuizData);
 
 
