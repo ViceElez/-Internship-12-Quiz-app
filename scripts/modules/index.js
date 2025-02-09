@@ -1,4 +1,5 @@
-
+import {fetchQuizData} from "./api.js";
+let timeoutId=null;
 function createQuizList(question){
     const h5=document.createElement("h5");
     h5.textContent=question;
@@ -28,19 +29,12 @@ function createQuizLayout(data,selectedType){
     let currentQuestion=0;
     let correctAnswers=0;
     showQuestion(selectedType,currentQuestion,correctAnswers,data);
+    return;
 }
 
 function showQuestion(selectedType,currentQuestion,correctAnswers,data){
     const quizDiv=document.createElement("div");
     quizDiv.id="quizDiv";
-    console.log(correctAnswers);
-    console.log(currentQuestion);
-
-    if(currentQuestion>=data.results.length){
-        quizDiv.innerHTML=`<h2>Quiz je zavrsen</h2>
-        <h3>Broj tocnih odgovora je ${correctAnswers}</h3>`;
-        return;
-    }
 
     quizDiv.style.display="flex";
     quizDiv.style.flexDirection="column";
@@ -53,6 +47,25 @@ function showQuestion(selectedType,currentQuestion,correctAnswers,data){
     quizDiv.style.marginTop="100px";
     quizDiv.style.padding="30px";
     quizDiv.style.borderRadius="30px";
+
+    if(currentQuestion>=data.results.length){
+        quizDiv.innerHTML=`<h2>Kviz je zavrsen</h2>
+        <h3>Broj tocnih odgovora je ${correctAnswers}</h3>`;
+
+        let returnButton=document.createElement("button");
+        returnButton.textContent="Povratak";
+        returnButton.style.width="100px";
+        returnButton.style.padding="10px";
+        returnButton.style.borderRadius="30px";
+        returnButton.style.backgroundColor="lightgreen";
+        returnButton.style.marginTop="20px";
+
+        returnButton.addEventListener("click",fetchQuizData);
+        quizDiv.appendChild(returnButton);
+        document.body.appendChild(quizDiv);
+        //prbolem s metodom je da me nevrati na pocetak nego mi samo fetcha opet pitanja
+        return;
+    }
     
 
     const question=data.results[currentQuestion];
@@ -104,7 +117,12 @@ function showQuestion(selectedType,currentQuestion,correctAnswers,data){
                 button.style.backgroundColor = '';
               });
 
-        button.addEventListener("click", () => setTimeout(confirmAnswer(button,question,correctAnswers,currentQuestion,selectedType,data), 2000));
+              button.addEventListener("click", () => {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    confirmAnswer(button, question, correctAnswers, currentQuestion, selectedType, data);
+                }, 2000);
+            });     
             answersDiv.appendChild(button);
     });
     
