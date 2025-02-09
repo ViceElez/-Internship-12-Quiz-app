@@ -46,4 +46,10 @@ function disableRadioButtons() {
     radioBtnType.forEach(radio => radio.disabled = true);
 }
 
-export {disableRadioButtons,selectedCategory, selectedDiff, selectedType};
+function enableRadioButtons() {
+    radioBtnCategory.forEach(radio => radio.disabled = false);
+    radioBtnDiff.forEach(radio => radio.disabled = false);
+    radioBtnType.forEach(radio => radio.disabled = false);
+}
+
+export {disableRadioButtons,enableRadioButtons,selectedCategory, selectedDiff, selectedType};
