@@ -72,13 +72,13 @@
         answersDiv.style.gap = "10px";
         answersDiv.style.width = "300px";
 
-        let button = [];
+        let buttons = [];
 
         if(selectedType==="tf"){
             let corrBtn=createCorrect('True');
             let incorrBtn=createInCorrect('False');
-            button.push(corrBtn);
-            button.push(incorrBtn);
+            buttons.push(corrBtn);
+            buttons.push(incorrBtn);
         }
 
         else{ 
@@ -86,14 +86,14 @@
             let incorrBtn=createInCorrect(question.incorrect_answers[0]);
             let incorrBtn1=createInCorrect(question.incorrect_answers[1]);
             let incorrBtn2=createInCorrect(question.incorrect_answers[2]);
-            button.push(corrBtn);
-            button.push(incorrBtn);
-            button.push(incorrBtn1);
-            button.push(incorrBtn2);
-            shuffleButtons(button);
+            buttons.push(corrBtn);
+            buttons.push(incorrBtn);
+            buttons.push(incorrBtn1);
+            buttons.push(incorrBtn2);
+            shuffleButtons(buttons);
         }
 
-        button.forEach(button => {
+        buttons.forEach(button => {
             button.style.width = "140px";
                 button.style.textAlign = "center";
                 button.style.padding = "20px";
@@ -110,7 +110,7 @@
                 button.addEventListener("click", () => {
                     clearTimeout(timeoutId);
                     timeoutId = setTimeout(() => {
-                        confirmAnswer(button, question, correctAnswers, currentQuestion, selectedType, data);
+                        confirmAnswer(button, question, correctAnswers, currentQuestion, selectedType, data,buttons);
                     }, 2000);
                 });     
                 answersDiv.appendChild(button);
@@ -122,7 +122,7 @@
         document.body.appendChild(quizDiv);
     } 
 
-    function confirmAnswer(button,question,correctAnswers,currentQuestion,selectedType,data){
+    function confirmAnswer(button,question,correctAnswers,currentQuestion,selectedType,data,buttons){
         let userConfirmed=confirm("Da li ste sigurni u odgovor?");
         if(userConfirmed){
             if(button.textContent===question.correct_answer){
@@ -133,6 +133,11 @@
             else{
                 currentQuestion++;
                 button.style.backgroundColor="red";
+                buttons.forEach(item => {
+                    if(item.textContent===question.correct_answer){
+                        item.style.backgroundColor="green";
+                    }
+                });
             }
             setTimeout(() => {
                 document.getElementById("quizDiv").innerHTML = "";
@@ -190,7 +195,7 @@
 
         pastResults.forEach((result,index) => {
             let resultTxt=document.createElement("p");
-            resultTxt.textContent=` Kviz ${index+1}.: ${result.points} bodova, Tezina:${result.difficulty}, Kategorija: ${result.quizType}, Vrijeme izvrsavanja kviza: ${result.time}`;
+            resultTxt.textContent=` Kviz ${index+1}.: Bodovi: ${result.points}, Tezina:${result.difficulty}, Kategorija: ${result.quizType}, Vrijeme izvrsavanja kviza: ${result.time}`;
             resultDiv.appendChild(resultTxt);
 
             resultDiv.appendChild(document.createElement("br"));
